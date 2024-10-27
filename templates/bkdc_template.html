@@ -1,0 +1,90 @@
+{% extends "booking-details-for-customer.html" %}
+{% block details %}
+
+<div class="booking-details-parent">
+<div class="booking-details">Booking Details</div>
+<div class="category-beauty-and-wellness-wrapper">
+    <div class="category-beauty-and-container">
+    <p class="category-beauty-and-wellness">
+        <b class="category">Category</b><span>: {{ appointment.Service_ID | service_category }}</span>
+    </p>
+    <p class="category-beauty-and-wellness">&nbsp;</p>
+    <p class="category-beauty-and-wellness">
+        <b class="category">Service</b><span> : {{ appointment.Service_ID | service_name }}</span>
+    </p>
+    <p class="category-beauty-and-wellness">&nbsp;</p>
+    <p class="category-beauty-and-wellness">
+        <b class="category">Booking ID </b><span>: {{ appointment.appointment_ID }}</span>
+    </p>
+    <p class="category-beauty-and-wellness">&nbsp;</p>
+    <p class="category-beauty-and-wellness">
+        <span class="date1">Date : </span><span>{{ appointment.appointment_date }}</span>
+    </p>
+    <p class="blank-line6">&nbsp;</p>
+    <p class="category-beauty-and-wellness">
+        <span class="date1">Time : </span><span>{{ appointment.appointment_time }}</span>
+    </p>
+    <p class="category-beauty-and-wellness">&nbsp;</p>
+    <p class="category-beauty-and-wellness">
+        <b class="category">Price </b><span>: ₹{{ appointment.price }}</span>
+    </p>
+    <p class="category-beauty-and-wellness">&nbsp;</p>
+    <p class="category-beauty-and-wellness">
+        <b>Name of professional</b
+        ><span class="category"> : {{ appointment.Professional_ID | pname }}</span>
+    </p>
+    <p class="category-beauty-and-wellness">&nbsp;</p>
+    <p class="category-beauty-and-wellness">
+        <b class="category">Contact</b><span> : {{ appointment.Professional_ID | pmobile }}</span>
+    </p>
+    </div>
+
+    
+
+
+<div class="container">
+    <div class="post">
+      <div class="text">Thanks for rating us!</div>
+      <div class="edit">EDIT</div>
+    </div>
+    <div class="star-widget">
+      <input type="radio" name="rate" id="rate-5" value = "5">
+      <label for="rate-5" class="fas fa-star"></label>
+      <input type="radio" name="rate" id="rate-4" value = "4">
+      <label for="rate-4" class="fas fa-star"></label>
+      <input type="radio" name="rate" id="rate-3" value = "3">
+      <label for="rate-3" class="fas fa-star"></label>
+      <input type="radio" name="rate" id="rate-2" value = "2">
+      <label for="rate-2" class="fas fa-star"></label>
+      <input type="radio" name="rate" id="rate-1" value = "1">
+      <label for="rate-1" class="fas fa-star"></label>
+      <form action= "{{url_for('bkdc',id = appointment.Professional_ID)}}" method="POST">
+      <header></header>
+        <div class="textarea">
+          <textarea cols="30" placeholder="Describe your experience.." id="text_rev" name="text_rev"></textarea>
+        </div>
+        <div class="btn">
+          <button type="submit">Post</button>
+        </div>
+    </div>
+  </div>
+</form>
+
+  <script>
+    const btn = document.querySelector("buttonrev");
+    const post = document.querySelector(".postrev");
+    const widget = document.querySelector(".star-widget");
+    const editBtn = document.querySelector(".edit");
+    btn.onclick = ()=>{
+      widget.style.display = "none";
+      post.style.display = "block";
+      editBtn.onclick = ()=>{
+        widget.style.display = "block";
+        post.style.display = "none";
+      }
+      return false;
+    }
+  </script>
+</div>
+</div>
+{% endblock details %}
